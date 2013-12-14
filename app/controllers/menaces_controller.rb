@@ -18,6 +18,6 @@ class MenacesController < ApplicationController
   end
 
   def track
-    render :text => "show the tracker"
+    @menace = Menace.find_by_uuid(params[:id])
   end
 end

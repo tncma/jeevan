@@ -1,0 +1,39 @@
+
+
+
+%fieldset
+  %legend
+    %h1 Track your menace request
+
+  %h3.thanks
+    Hi  
+    %strong #{@menace.name+","}
+
+  %p
+    You can track the progress of your menace request here.
+
+  .row
+    .small-8.columns.small-offset-2
+
+      -submitted = OpenStruct.new(text: "Submitted", method_name: "submitted?")
+      -rejected = OpenStruct.new(text: "Rejected", method_name: "rejected?")
+      -accepted = OpenStruct.new(text: "Accepted", method_name: "accepted?")
+      -assigned = OpenStruct.new(text: "Assigned", method_name: "assigned?")
+      -resolved = OpenStruct.new(text: "Finished", method_name: "finished?")
+
+      -rejected_steps = [submitted, rejected]
+      -not_rejected_steps = [submitted, accepted, assigned, resolved]
+
+      -if @menace.rejected?
+        -steps = rejected_steps
+      -else
+        -steps = not_rejected_steps
+
+      %ol.wizard-progress.clearfix
+        -@active_step_found = false
+        -steps.each_with_index do |s, i|
+          %li{:class => s.text.downcase + (@active_step_found ? "" : " active-step") }
+            %span.step-name=s.text
+            %span.visuallyhidden Step
+            %span.step-num=i+1
+          -@active_step_found = @menace.send(s.method_name) unless @active_step_found

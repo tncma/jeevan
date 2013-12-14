@@ -4,6 +4,7 @@ class CreateMenaces < ActiveRecord::Migration
       t.string :uuid
       t.string :name
       t.string :email
+      t.string :status
       t.text   :what
       t.text   :where
 

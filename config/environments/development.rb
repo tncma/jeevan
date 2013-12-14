@@ -46,8 +46,8 @@ Jeevan::Application.configure do
     domain: "example.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: YAML.load_file("config/passwords.yml")[:email],
-    password: YAML.load_file("config/passwords.yml")[:password]
+    user_name: YAML.load_file(Rails.root.join("config/passwords.yml"))["user_name"],
+    password: YAML.load_file(Rails.root.join("config/passwords.yml"))["password"]
   }
 
   #smpt url

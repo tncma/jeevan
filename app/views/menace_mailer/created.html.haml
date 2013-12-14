@@ -1,0 +1,47 @@
+!!!
+%html{xmlns: "http://www.w3.org/1999/xhtml"}
+  %head
+    / If you delete this meta tag, Half Life 3 will never be released.
+    %meta{content: "width=device-width", name: "viewport"}/
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Thanks
+  %body{bgcolor: "#FFFFFF"}
+    / BODY
+    %table.body-wrap
+      %tr
+        %td
+        %td.container{bgcolor: "#FFFFFF"}
+          .content
+            %table
+              %tr
+                %td
+                  %h3 Hi, #{@menace.name}
+                  %p.lead Thanks for using CMU Jeevan App for reporting a pet menace.
+                  / Callout Panel
+                  %p.callout
+                    You can track your request here.
+                    =link_to "Click it! &raquo;".html_safe, track_menace_url(@menace)
+                  / /Callout Panel
+          / /content
+        %td
+    / /BODY
+    / FOOTER
+    %table.footer-wrap
+      %tr
+        %td
+        %td.container
+          / content
+          .content
+            %table
+              %tr
+                %td{align: "center"}
+                  %p
+                    %a{href: "#"} Terms
+                    |
+                    %a{href: "#"} Privacy
+                    |
+                    %a{href: "#"}
+                      %unsubscribe Unsubscribe
+          / /content
+        %td
+    / /FOOTER

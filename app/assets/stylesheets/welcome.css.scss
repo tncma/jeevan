@@ -1,0 +1,42 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+h1.logo {
+  font-family: 'Finger Paint', cursive;
+  text-shadow: 0px 2px 3px #666;
+  color: #7bdcf5;
+}
+
+p.main-caption {
+  color: #fff;
+  font-size: 5em;
+  line-height: 1;
+  text-align: center;
+}
+
+p.main-button {
+  font-size: 15px;
+  text-align: center;
+  a {
+    display:inline-block;
+    margin:20px 0;
+    padding:17px 30px 20px;
+    background:#ee6768;
+    color:#fff;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    text-decoration:none
+  }
+}
+
+body.cover { 
+  background: url("/assets/dog_bg.jpeg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.login {
+  padding-top: 7em;
+}

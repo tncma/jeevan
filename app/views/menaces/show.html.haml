@@ -1,0 +1,13 @@
+.row
+  .small-4.columns.small-offset-4
+    %hr
+    %h3.thanks
+      Thanks, 
+      %strong=@menace.name
+      !
+    %p
+      We appreciate your first step towards saving a life.
+      You can track your request here.
+    %p
+      =link_to "Track here &rarr;".html_safe, track_menace_path(@menace), :class => "small secondary button"
+    %hr

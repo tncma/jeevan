@@ -1,0 +1,44 @@
+.row
+  .small-12.columns
+
+    =form_for @menace, :html => {"data-abide" => ""} do |f|
+
+      %fieldset
+        %legend
+          %h1 Report pet menace
+
+        - if @menace.errors.any?
+          %span.error
+            The form contains #{pluralize(@menace.errors.count, "error")}.
+          - @menace.errors.full_messages.each do |msg|
+            %small.error=msg
+
+        .name-field
+          %label
+            Your Name
+            %small required
+          =f.text_field :name, required: "", pattern:"alpha"
+          %small.error Name is required and must be a string.
+
+        .email-field
+          %label
+            Your email
+            %small required
+          =f.email_field :email, required: ""
+          %small.error An email address is required.
+
+        .what-field
+          %label
+            What kind of menace?
+            %small required
+          =f.text_area :what, required: ""
+          %small.error Kind of menace is required.
+
+        .where-field
+          %label
+            Where is the menace?
+            %small required
+          =f.text_area :where, required: ""
+          %small.error Location is required.
+
+        %button(button="submit") Submit

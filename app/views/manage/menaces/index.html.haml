@@ -1,8 +1,31 @@
 %h1 Menace(s)
 %hr
--@menaces.each do |m|
-  .well
-    %p=m.name
-    %p=m.email
-    %p=m.what
-    %p=m.where
+
+- tab_paths = { "Submitted" => submitted_manage_menaces_path,
+  "Accepted" => accepted_manage_menaces_path,
+  "Assigned" => assigned_manage_menaces_path,
+  "Rejected" => rejected_manage_menaces_path,
+  "Finished" => finished_manage_menaces_path}
+
+%dl.tabs
+  -tab_paths.each do |key, value|
+    -active = current_page?(value) ? "active" : ""
+    %dd{:class => active}
+      =link_to key, value
+
+%br
+
+-if @menaces.empty?
+  Nothing to show.
+-else
+  -@menaces.each do |m|
+    .panel
+      %p=m.name
+      %p=m.email
+      %p=m.what
+      %p=m.where
+      .row
+        -m.status_events.each do |s|
+          .small-2.columns
+            =link_to s, transition_path(m, s), :class => "button tiny"
+        .small-2.columns 

@@ -57,7 +57,21 @@ Jeevan::Application.routes.draw do
     end
   end
   namespace :manage do
-    resources :menaces
+    resources :menaces do
+      collection do
+        get :submitted
+        get :accepted
+        get :assigned
+        get :rejected
+        get :finished
+      end
+      member do
+        get :accept
+        get :assign
+        get :reject
+        get :finish
+      end
+    end
   end
   root :to => 'welcome#index'
 

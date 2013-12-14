@@ -6,6 +6,12 @@ class Menace < ActiveRecord::Base
   validates_presence_of :name, :what, :where
   validates :email, :presence => true, :email => true
 
+  scope :submitted, -> { where(status: "submitted") }
+  scope :accepted, -> { where(status: "accepted") }
+  scope :assigned, -> { where(status: "assigned") }
+  scope :rejected, -> { where(status: "rejected") }
+  scope :finished, -> { where(status: "finished") }
+
   state_machine :status, :initial => :submitted do
     event :accept do
       transition :submitted => :accepted

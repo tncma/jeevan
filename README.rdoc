@@ -1,5 +1,15 @@
 == Jeevan
 
-A Pet menace tracker app.
+
+An app to report pet menace.
+Exposes step-by-step actions by the authorities to the user.
+Has a simple internal workflow.
+
+
 
 Team: Cheeseburst
+
+Members 
+Deepak Prasanna R
+Pavithra S R
+

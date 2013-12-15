@@ -24,6 +24,7 @@
 
     .row.main-container
       .small-12.columns
+
         -if notice.present?
           .alert-box{"data-alert" => ""}
             =notice
@@ -36,7 +37,7 @@
 
     %footer
       Designed and built with all the love in the world during 
-      %a{:href => "http://info.thoughtworks.com/CMAHackChennai_RegistrationPage.html"} CMU Hackathon 
+      %a{:href => "http://info.thoughtworks.com/CMAHackChennai_RegistrationPage.html", :target => "_blank"} CMU Hackathon 
       by 
-      %a{:href => "http://twitter.com/deepakprasanna"} @deepakprasanna
+      %a{:href => "http://twitter.com/deepakprasanna", :target => "_blank"} @deepakprasanna
       = javascript_include_tag "application"

@@ -35,28 +35,25 @@
             %span.step-num=i+1
           -@active_step_found = @menace.send(s.method_name) unless @active_step_found
 
-  %p
-    %h4 Excerpt
-    %p
-      .row
-        .small-1.columns
-          .label.round.secondary submitted
-        .small-2.columns
-          %i
-            %small
-              =time_ago_in_words @menace.created_at
-              ago
-        .small-2.columns
-    -@menace.transition_logs.each do |log|
-      %p
-        .row
-          .small-2.columns
-            .label.round=log.from
-            &rarr;
-            .label.round{:class => transition_label_class(log)}=log.to
-          .small-2.columns
-            %i
-              %small
-                =time_ago_in_words log.created_at
-                ago
-          .small-2.columns
+  %h4 Excerpt
+  .row.margin-bottom-10-px
+    .small-1.columns
+      .label.round.secondary submitted
+    .small-2.columns
+      %i
+        %small
+          =time_ago_in_words @menace.created_at
+          ago
+  .well.font-size-0-8em Please wait while we look into your issue.
+  -@menace.transition_logs.each do |log|
+    .row.margin-bottom-10-px
+      .small-2.columns
+        .label.round=log.from
+        &rarr;
+        .label.round{:class => transition_label_class(log)}=log.to
+      .small-2.columns
+        %i
+          %small
+            =time_ago_in_words log.created_at
+            ago
+    .well.font-size-0-8em=TRANSITION_MESSAGES[log.transition]

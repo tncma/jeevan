@@ -9,6 +9,13 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+TRANSITION_MESSAGES = {
+  "submitted->accepted" => "Yaaay! Your request has been accepted.",
+  "submitted->rejected" => "We are sorry but your request got rejected. A possible reason may be because you provided insufficent details.",
+  "accepted->assigned" => "Your request has been assigned. It will be finished within 2 working days.",
+  "assigned->finished" => "Thanks, your request has been resolved."
+}
+
 module Jeevan
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

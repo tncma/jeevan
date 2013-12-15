@@ -1,4 +1,4 @@
-%h1 Menace(s)
+%h2 Request(s)
 %hr
 
 - tab_paths = { "Submitted" => submitted_manage_menaces_path,
@@ -7,26 +7,79 @@
   "Assigned" => assigned_manage_menaces_path,
   "Finished" => finished_manage_menaces_path}
 
-%dl.tabs
-  -tab_paths.each do |key, value|
-    -active = current_page?(value) ? "active" : ""
-    %dd{:class => active}
-      =link_to key, value
+-#%dl.tabs.vertical
+  -#-tab_paths.each do |key, value|
+    -#-active = current_page?(value) ? "active" : ""
+    -#%dd{:class => active}
+      -#=link_to key, value
 
-%br
+.row
+  .small-3.columns
 
--if @menaces.empty?
-  Nothing to show.
--else
-  -@menaces.each do |m|
-    .well
-      %p=m.name
-      %p=m.email
-      %p=m.what
-      %p=m.where
-      .row
-        -m.status_events.each do |s|
-          .small-1.columns
-            =link_to s, transition_path(m, s), :class => "button tiny"
-        .small-2.columns 
-          =link_to "Tracker &rarr;".html_safe, track_menace_path(m), :class => "button tiny secondary", :target => "_blank"
+    .hide-for-small
+      .sidebar
+        %nav
+          %ul.side-nav
+            %li.heading Filter Issues 
+            -tab_paths.each do |key, value|
+              -active = current_page?(value) ? "active" : ""
+              %li{:class => active}
+                =link_to key, value
+
+            -#%li
+              -#%a{href: "../index.html"} Getting Started
+            -#%li
+              -#%a{href: "../css.html"} CSS
+            -#%li
+              -#%a{href: "../sass.html"} Sass
+            -#%li
+              -#%a{href: "../applications.html"} Applications
+            -#%li
+              -#%a{href: "../javascript.html"} JavaScript
+            -#%li
+              -#%a{href: "global.html"} Global Styles
+            -#%li
+              -#%a{href: "../upgrading.html"} Upgrading
+
+  .small-8.columns
+    -if @menaces.empty?
+      Nothing to show.
+    -else
+      -@menaces.each do |m|
+        %fieldset
+          %legend 
+            %h3="Issue id ##{m.id}"
+          .name-field
+            .row
+              .small-2.columns
+                %label Name
+              .small-6.columns 
+                =m.name
+
+          .email-field
+            .row
+              .small-2.columns
+                %label Email
+              .small-6.columns
+                =m.email
+
+          .what-field
+            .row
+              .small-2.columns
+                %label What?
+              .small-6.columns
+                =m.what
+            
+          .where-field
+            .row
+              .small-2.columns
+                %label Where?
+              .small-6.columns
+                =m.where
+          %br
+          .row
+            -m.status_events.each do |s|
+              .small-1.columns
+                =link_to s, transition_path(m, s), :class => "button tiny"
+            .small-2.columns 
+              =link_to "Tracker &rarr;".html_safe, track_menace_path(m), :class => "button tiny secondary margin0", :target => "_blank"

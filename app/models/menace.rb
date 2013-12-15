@@ -2,6 +2,8 @@ class Menace < ActiveRecord::Base
   include ActiveModel::Validations
   after_initialize lambda { |t| t.uuid ||= SecureRandom.uuid } #set uuid 
   attr_accessible :name, :email, :what, :where, :status
+
+  has_many :transition_logs
   
   validates_presence_of :name, :what, :where
   validates :email, :presence => true, :email => true
@@ -27,6 +29,14 @@ class Menace < ActiveRecord::Base
 
     event :finish do
       transition :assigned => :finished
+    end
+
+    after_transition do |menace, transition|
+      TransitionLog.create!(
+        :from => transition.from,
+        :to => transition.to,
+        :menace_id => menace.id
+      )
     end
   end
 

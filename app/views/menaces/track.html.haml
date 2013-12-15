@@ -1,13 +1,13 @@
 %fieldset
   %legend
-    %h1 Track your menace request
+    %h1 Track your request
 
   %h3.thanks
     Hi  
     %strong #{@menace.name+","}
 
   %p
-    You can track the progress of your menace request here.
+    You can track the progress of your request here.
 
   .row
     .small-8.columns.small-offset-2
@@ -34,3 +34,29 @@
             %span.visuallyhidden Step
             %span.step-num=i+1
           -@active_step_found = @menace.send(s.method_name) unless @active_step_found
+
+  %p
+    %h4 Excerpt
+    %p
+      .row
+        .small-1.columns
+          .label.round.secondary submitted
+        .small-2.columns
+          %i
+            %small
+              =time_ago_in_words @menace.created_at
+              ago
+        .small-2.columns
+    -@menace.transition_logs.each do |log|
+      %p
+        .row
+          .small-2.columns
+            .label.round=log.from
+            &rarr;
+            .label.round{:class => transition_label_class(log)}=log.to
+          .small-2.columns
+            %i
+              %small
+                =time_ago_in_words log.created_at
+                ago
+          .small-2.columns

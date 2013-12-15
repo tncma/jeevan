@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131214015753) do
+ActiveRecord::Schema.define(:version => 20131215011819) do
 
   create_table "menaces", :force => true do |t|
     t.string   "uuid"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(:version => 20131214015753) do
     t.string   "status"
     t.text     "what"
     t.text     "where"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "transition_logs", :force => true do |t|
+    t.string   "from"
+    t.string   "to"
+    t.integer  "menace_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

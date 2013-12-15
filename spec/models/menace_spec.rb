@@ -55,4 +55,27 @@ describe Menace do
     @menace.finish
     @menace.should be_finished
   end
+
+  it "should not have any transition log when it is newly created" do
+    @menace.transition_logs.should be_empty
+  end
+
+  it "should log a transition when it is accepted" do
+    @menace.accept
+    @menace.transition_logs.count.should == 1
+  end 
+
+  it "should log a transition for the accept event" do
+    @menace.accept
+    transition_log = @menace.transition_logs.first
+    transition_log.from.should == "submitted"
+    transition_log.to.should == "accepted"
+  end
+
+  it "should created transition_logs for multiple event" do
+    @menace.accept
+    @menace.assign
+    @menace.finish
+    @menace.transition_logs.count.should == 3
+  end
 end

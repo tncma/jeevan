@@ -18,6 +18,6 @@ class MenacesController < ApplicationController
   end
 
   def track
-    @menace = Menace.find_by_uuid(params[:id])
+    @menace = Menace.includes(:transition_logs).find_by_uuid(params[:id])
   end
 end

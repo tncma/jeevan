@@ -33,6 +33,7 @@ gem 'haml-rails'
 gem 'roadie'
 gem 'devise'
 gem 'state_machine'
+gem 'debugger'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

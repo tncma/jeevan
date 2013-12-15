@@ -19,13 +19,14 @@
   Nothing to show.
 -else
   -@menaces.each do |m|
-    .panel
+    .well
       %p=m.name
       %p=m.email
       %p=m.what
       %p=m.where
       .row
         -m.status_events.each do |s|
-          .small-2.columns
+          .small-1.columns
             =link_to s, transition_path(m, s), :class => "button tiny"
         .small-2.columns 
+          =link_to "Tracker &rarr;".html_safe, track_menace_path(m), :class => "button tiny secondary", :target => "_blank"
